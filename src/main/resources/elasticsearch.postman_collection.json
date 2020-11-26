@@ -1,0 +1,1007 @@
+{
+	"info": {
+		"_postman_id": "584eed16-83d8-43fd-a360-b14164484359",
+		"name": "elasticsearch",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "java-api",
+			"item": [
+				{
+					"name": "索引管理",
+					"item": [
+						{
+							"name": "创建索引",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"properties\": {\r\n        \"name\": {\r\n            \"type\": \"text\",\r\n            \"analyzer\": \"ik_max_word\",\r\n            \"search_analyzer\": \"ik_smart\"\r\n        },\r\n        \"description\": {\r\n            \"type\": \"text\",\r\n            \"analyzer\": \"ik_max_word\",\r\n            \"search_analyzer\": \"ik_smart\"\r\n        },\r\n        \"studymodel\": {\r\n            \"type\": \"keyword\"\r\n        },\r\n        \"price\": {\r\n            \"type\": \"float\"\r\n        },\r\n        \"timestamp\": {\r\n            \"type\": \"date\",\r\n            \"format\": \"yyyy‐MM‐dd HH:mm:ss||yyyy‐MM‐dd||epoch_millis\"\r\n        }\r\n    }\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/es/index/create/demo333",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"es",
+										"index",
+										"create",
+										"demo333"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "添加文档",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"spring MVC实战\",\r\n    \"description\": \"本课程主要从四个章节进行讲解： 1.微服务架构入门 2.spring MVC 基础入门 3.实战Spring MVC 4.注册中心eureka。\",\r\n    \"studymodel\": \"201004\",\r\n    \"price\": 23.55\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/es/doc/add?index=demo333",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"es",
+										"doc",
+										"add"
+									],
+									"query": [
+										{
+											"key": "index",
+											"value": "demo333"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "修改文档",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"price\": 123.55\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/es/doc/update/FCbfA3YBbOC9MKWMNPJJ?index=demo333",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"es",
+										"doc",
+										"update",
+										"FCbfA3YBbOC9MKWMNPJJ"
+									],
+									"query": [
+										{
+											"key": "index",
+											"value": "demo333"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "查询文档",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/es/doc/get/FCbfA3YBbOC9MKWMNPJJ?index=demo333&type",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"es",
+										"doc",
+										"get",
+										"FCbfA3YBbOC9MKWMNPJJ"
+									],
+									"query": [
+										{
+											"key": "index",
+											"value": "demo333"
+										},
+										{
+											"key": "type",
+											"value": null
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "删除文档",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/es/doc/delete/FCbfA3YBbOC9MKWMNPJJ?index=demo333",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"es",
+										"doc",
+										"delete",
+										"FCbfA3YBbOC9MKWMNPJJ"
+									],
+									"query": [
+										{
+											"key": "index",
+											"value": "demo333"
+										},
+										{
+											"key": "type",
+											"value": null,
+											"disabled": true
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "删除索引",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/es/index/delete/demo333",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"es",
+										"index",
+										"delete",
+										"demo333"
+									],
+									"query": [
+										{
+											"key": "type",
+											"value": null,
+											"disabled": true
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"protocolProfileBehavior": {},
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "搜索管理",
+					"item": [],
+					"protocolProfileBehavior": {},
+					"_postman_isSubFolder": true
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "查询文档",
+			"item": [
+				{
+					"name": "查询索引下所有文档",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:9200/demo333/_search/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9200",
+							"path": [
+								"demo333",
+								"_search",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "查询索引下所有文档 Copy 3",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"query\":{\r\n        \"match_all\":{}\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:9200/demo/_search",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9200",
+							"path": [
+								"demo",
+								"_search"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "查询索引下所有文档 Copy 2",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:9200/megacorp/employee/3/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9200",
+							"path": [
+								"megacorp",
+								"employee",
+								"3",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "查询索引下所有文档 Copy",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:9200/demo/_search",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9200",
+							"path": [
+								"demo",
+								"_search"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "条件查询",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:9200/megacorp/employee/_search?q=last_name:Smith",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9200",
+							"path": [
+								"megacorp",
+								"employee",
+								"_search"
+							],
+							"query": [
+								{
+									"key": "q",
+									"value": "last_name:Smith"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "查询所有文档",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:9200/_search",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9200",
+							"path": [
+								"_search"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "分页查询",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"from\": 0,\r\n    \"size\": 2,\r\n    \"query\": {\r\n        \"match_all\": {}\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:9200/_search",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9200",
+							"path": [
+								"_search"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "term query精确查询",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\r\n    \"query\": {\r\n        \"term\": {\r\n            \"name\": \"开发基础\"\r\n        }\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:9200/demo/_search",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9200",
+							"path": [
+								"demo",
+								"_search"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "match query",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"query\": {\r\n        \"match\": {\r\n            \"name\": {\r\n                \"query\": \"spring\",\r\n                \"operator\": \"or\"\r\n            }\r\n        }\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:9200/demo/_search",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9200",
+							"path": [
+								"demo",
+								"_search"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "短语查询",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"query\": {\r\n        \"match\": {\r\n            \"name\": {\r\n                \"query\": \"spring\",\r\n                \"operator\": \"or\"\r\n            }\r\n        }\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:9200/megacorp/employee/_search",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9200",
+							"path": [
+								"megacorp",
+								"employee",
+								"_search"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "分析",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"aggs\": {\r\n    \"all_interests\": {\r\n      \"terms\": { \"field\": \"interests\" }\r\n    }\r\n  }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:9200/megacorp/employee/_search",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9200",
+							"path": [
+								"megacorp",
+								"employee",
+								"_search"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "multi query",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"query\": {\r\n        \"multi_match\": {\r\n            \"query\": \"spring框架\",\r\n            \"minimum_should_match\": \"50%\",\r\n            \"fields\": [\r\n                \"name^10\",\r\n                \"description\"\r\n            ]\r\n        }\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:9200/demo/_search",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9200",
+							"path": [
+								"demo",
+								"_search"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "boolean query",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"_source\": [\r\n        \"name\",\r\n        \"studymodel\",\r\n        \"description\"\r\n    ],\r\n    \"query\": {\r\n        \"bool\": {\r\n            \"must\": [\r\n                {\r\n                    \"multi_match\": {\r\n                        \"query\": \"java开发基础\",\r\n                        \"minimum_should_match\": \"50%\",\r\n                        \"fields\": [\r\n                            \"name^10\",\r\n                            \"description\"\r\n                        ]\r\n                    }\r\n                },\r\n                {\r\n                    \"term\": {\r\n                        \"studymodel\": \"201001\"\r\n                    }\r\n                }\r\n            ]\r\n        }\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:9200/demo/_search",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9200",
+							"path": [
+								"demo",
+								"_search"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "过滤器",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"query\": {\r\n        \"bool\": {\r\n            \"must\": [\r\n                {\r\n                    \"match\": {\r\n                        \"last_name\": \"Smith\"\r\n                    }\r\n                }\r\n            ],\r\n            \"filter\": [\r\n                {\r\n                    \"range\": {\r\n                        \"age\": {\r\n                            \"gte\": 30\r\n                        }\r\n                    }\r\n                }\r\n            ]\r\n        }\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:9200/megacorp/employee/_search",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9200",
+							"path": [
+								"megacorp",
+								"employee",
+								"_search"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "排序",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"_source\": [\r\n        \"name\",\r\n        \"studymodel\",\r\n        \"description\",\r\n        \"price\"\r\n    ],\r\n    \"sort\": [\r\n        {\r\n            \"studymodel\": \"desc\"\r\n        },\r\n        {\r\n            \"price\": \"asc\"\r\n        }\r\n    ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:9200/demo/_search",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9200",
+							"path": [
+								"demo",
+								"_search"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "高亮",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"_source\": [\r\n    \"name\",\r\n    \"studymodel\",\r\n    \"description\",\r\n    \"price\"\r\n  ],\r\n  \"query\": {\r\n    \"term\": {\r\n      \"name\": \"开发\"\r\n    }\r\n  },\r\n  \"sort\": [\r\n    {\r\n      \"studymodel\": \"desc\"\r\n    },\r\n    {\r\n      \"price\": \"asc\"\r\n    }\r\n  ],\r\n  \"highlight\": {\r\n    \"pre_tags\": [\r\n      \"<tag1>\"\r\n    ],\r\n    \"post_tags\": [\r\n      \"</tag2>\"\r\n    ],\r\n    \"fields\": {\r\n      \"name\": {},\r\n      \"description\": {}\r\n    }\r\n  }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:9200/demo/_search",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9200",
+							"path": [
+								"demo",
+								"_search"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "id  in查询",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\r\n    \"query\": {\r\n        \"ids\": {\r\n            \"type\": \"doc\",\r\n            \"values\": [\"4\"]\r\n        }\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:9200/demo/_search",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9200",
+							"path": [
+								"demo",
+								"_search"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "删除文档",
+			"item": [
+				{
+					"name": "条件删除",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"query\":{\r\n        \"term\":{\r\n            \"studymodel\": \"201002\"\r\n        }\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:9200/demo/_doc/_delete_by_query",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9200",
+							"path": [
+								"demo",
+								"_doc",
+								"_delete_by_query"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "根据id删除文档",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:9200/demo/_doc/w9n1-HUBa3wJzKTN_w46",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9200",
+							"path": [
+								"demo",
+								"_doc",
+								"w9n1-HUBa3wJzKTN_w46"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "修改文档",
+			"item": [
+				{
+					"name": "部分修改",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"doc\": {\r\n        \"studymodel\": \"201002\",\r\n        \"price\": 88\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:9200/demo/_doc/xNn2-HUBa3wJzKTNoA6-/_update",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9200",
+							"path": [
+								"demo",
+								"_doc",
+								"xNn2-HUBa3wJzKTNoA6-",
+								"_update"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "根据id删除文档",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:9200/demo/_doc/w9n1-HUBa3wJzKTN_w46",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9200",
+							"path": [
+								"demo",
+								"_doc",
+								"w9n1-HUBa3wJzKTN_w46"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "创建映射",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"properties\": {\r\n        \"description\": {\r\n            \"type\": \"text\",\r\n            \"analyzer\": \"ik_max_word\",\r\n            \"search_analyzer\": \"ik_smart\"\r\n        },\r\n        \"name\": {\r\n            \"type\": \"text\",\r\n            \"analyzer\": \"ik_max_word\",\r\n            \"search_analyzer\": \"ik_smart\"\r\n        },\r\n        \"pic\": {\r\n            \"type\": \"text\",\r\n            \"index\": false\r\n        },\r\n        \"price\": {\r\n            \"type\": \"float\"\r\n        },\r\n        \"studymodel\": {\r\n            \"type\": \"keyword\"\r\n        },\r\n        \"timestamp\": {\r\n            \"type\": \"date\",\r\n            \"format\": \"yyyy‐MM‐dd HH:mm:ss||yyyy‐MM‐dd||epoch_millis\"\r\n        }\r\n    }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:9200/demo/_mapping",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9200",
+					"path": [
+						"demo",
+						"_mapping"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "创建文档",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"Bootstrap开发\",\r\n    \"description\": \"Bootstrap是由Twitter推出的一个前台页面开发框架，是一个非常流行的开发框架，此框架集成了 多种页面效果。此开发框架包含了大量的CSS、JS程序代码，可以帮助开发者（尤其是不擅长页面开发的程序人员）轻松 的实现一个不受浏览器限制的精美界面效果。\",\r\n    \"studymodel\": \"201002\",\r\n    \"price\": 38.6,\r\n    \"timestamp\": \"2018‐04‐25 19:11:35\",\r\n    \"pic\": \"group1/M00/00/00/wKhlQFs6RCeAY0pHAAJx5ZjNDEM428.jpg\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:9200/demo333/document/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9200",
+					"path": [
+						"demo333",
+						"document",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "查询映射",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"description\": \"描述信息\",\r\n    \"name\": \"宝典\",\r\n    \"pic\": \"22222222222\",\r\n    \"price\": 33.3334,\r\n    \"studymodel\": \"不可一世\",\r\n    \"timestamp\": \"2020-11-11 12:11:22\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:9200/demo/_mapping",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9200",
+					"path": [
+						"demo",
+						"_mapping"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "查询映射 Copy",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"text\": \"spring开发基础\"\r\n    ,\r\n    \"analyzer\": \"ik_smart\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:9200/demo/_analyze",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9200",
+					"path": [
+						"demo",
+						"_analyze"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "查询映射 Copy 2",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"text\": \"spring开发基础\"\r\n    ,\r\n    \"analyzer\": \"ik_smart\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:9200/demo/_analyze",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9200",
+					"path": [
+						"demo",
+						"_analyze"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}

@@ -16,7 +16,7 @@ import java.lang.reflect.Method;
  * @Date: 2020/11/25
  * @Description:
  */
-@Configuration
+//@Configuration
 public class ResponseResultInterceptor implements HandlerInterceptor {
     private static final String RESULT_ANNO_FLAG = "RESULT_ANNO_FLAG";
 
@@ -29,7 +29,7 @@ public class ResponseResultInterceptor implements HandlerInterceptor {
             if (clazz.isAnnotationPresent(ResponseResult.class)){
                 request.setAttribute(RESULT_ANNO_FLAG,clazz.getAnnotation(ResponseResult.class));
             }else if (method.isAnnotationPresent(ResponseResult.class)){
-                request.setAttribute(RESULT_ANNO_FLAG,clazz.getAnnotation(ResponseResult.class));
+                request.setAttribute(RESULT_ANNO_FLAG,method.getAnnotation(ResponseResult.class));
             }
         }
         return true;

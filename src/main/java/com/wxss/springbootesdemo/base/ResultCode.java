@@ -8,7 +8,8 @@ package com.wxss.springbootesdemo.base;
 public enum ResultCode {
     SUCCESS(2000, "处理成功", true),
     SYSTEM_ERROR(5000,"系统异常，请稍后重试",false),
-    PARAM_INVALID(4000,"参数非法，请检查后重试",false);
+    PARAM_INVALID(4000,"参数非法，请检查后重试",false),
+    RESOURCE_NOT_FOUND(4004,"资源不存在",false);
 
 
     private Integer code;

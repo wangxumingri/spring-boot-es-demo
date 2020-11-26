@@ -14,6 +14,7 @@ import org.springframework.web.context.request.RequestAttributes;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 import org.springframework.web.context.request.WebRequest;
+import org.springframework.web.servlet.NoHandlerFoundException;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseBodyAdvice;
 
 import javax.servlet.http.HttpServletRequest;
@@ -74,4 +75,19 @@ public class ResponseResultAdvice implements ResponseBodyAdvice<Object> {
         failResultVo.setMessage(e.getMessage());
         return failResultVo;
     }
+
+    /**
+     * 处理404
+     * @param e
+     * @param request
+     * @return
+     */
+    @ExceptionHandler(NoHandlerFoundException.class)
+    public ResultVo<Object> handlerNoHandlerFoundException(Exception e, HttpServletRequest request){
+        LOG.error("ResponseResultAdvice#handlerNoHandlerFoundException 处理异常:{}",e.getMessage(),e);
+        ResultVo<Object> failResultVo = ResultBuilder.FAIL();
+        failResultVo.setMessage(e.getMessage());
+        return failResultVo;
+    }
+
 }

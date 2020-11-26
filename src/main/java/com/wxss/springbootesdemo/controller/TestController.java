@@ -6,10 +6,7 @@ import com.wxss.springbootesdemo.base.ResultVo;
 import com.wxss.springbootesdemo.dto.TestDto;
 import com.wxss.springbootesdemo.exception.IndexOperatorException;
 import org.springframework.http.HttpStatus;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseStatus;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -21,7 +18,7 @@ import java.util.Map;
  */
 @RestController
 @RequestMapping("/error")
-@ResponseStatus(value = HttpStatus.OK, reason = "Java的异常")
+//@ResponseStatus(value = HttpStatus.OK, reason = "Java的异常")
 public class TestController {
     private static final HashMap<String, Object> INFO;
 
@@ -31,12 +28,22 @@ public class TestController {
         INFO.put("age", "70");
     }
 
-//    @GetMapping()
-//    public HashMap<String, Object> helloError() throws Exception {
-//        throw new Exception("helloError");
-//    }
+    @GetMapping("/to500")
+    public HashMap<String, Object> to500() throws Exception {
+        int i = 1/0;
+        return new HashMap<>();
+    }
 
-    @GetMapping("helloJavaError")
+
+    @PostMapping("helloJava")
+    @ResponseStatus(value = HttpStatus.INTERNAL_SERVER_ERROR, reason = "Java method 的异常")
+    public HashMap<String, Object> helloJava() throws Exception {
+        HashMap<String, Object> objectObjectHashMap = new HashMap<>();
+        objectObjectHashMap.put("a",1);
+        return  objectObjectHashMap;
+    }
+
+    @PostMapping("helloJavaError")
     @ResponseStatus(value = HttpStatus.INTERNAL_SERVER_ERROR, reason = "Java method 的异常")
     public HashMap<String, Object> helloJavaError() throws Exception {
         throw new Exception("helloError");
@@ -65,5 +72,6 @@ public class TestController {
     public ResultVo<Map<String, Object>> helloResult() {
         return ResultBuilder.SUCCESS(INFO);
     }
+
 
 }
